@@ -1,0 +1,217 @@
+[gd_resource type="Resource" load_steps=23 format=2]
+
+[ext_resource path="res://assets/heroes/sprite_frames/boots.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://units/action.gd" type="Script" id=2]
+[ext_resource path="res://units/unit_info.gd" type="Script" id=3]
+[ext_resource path="res://units/ability.gd" type="Script" id=4]
+[ext_resource path="res://units/status_effect.gd" type="Script" id=5]
+[ext_resource path="res://units/passive.gd" type="Script" id=6]
+[ext_resource path="res://assets/heroes/icons/boots_icon.png" type="Texture" id=7]
+[ext_resource path="res://assets/heroes/animations/attack.tres" type="Animation" id=8]
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 6 )
+signal_required = true
+signal_name = "heal_ally"
+call_fn_name = "_on_bard_snake_heal_ally"
+attach_to = 1
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 4 )
+name = ""
+description = "Passive: Healing an ally Strengthens them for 2 turns, increasing their damage by 15%."
+passive = [ SubResource( 14 ) ]
+sequence = [  ]
+pip_cost = 0
+req_position = [ 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+type = 1
+friendly = false
+turns = 1
+scale_type = 6
+scale_amount = 0.1
+damage_type = 0
+flat_value = 0.0
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type = 0
+conditions = [  ]
+target_type = 0
+friendly = false
+scale_type = 2
+scale_amount = 0.5
+scale_change = 1.0
+apply = [ SubResource( 3 ) ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 8 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 5 )
+type = 1
+friendly = false
+turns = 1
+scale_type = 6
+scale_amount = 0.1
+damage_type = 0
+flat_value = 0.0
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 2 )
+type = 0
+conditions = [  ]
+target_type = 5
+friendly = false
+scale_type = 2
+scale_amount = 0.5
+scale_change = 1.0
+apply = [ SubResource( 15 ) ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 8 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+name = ""
+description = "Play a note to a single target and one other random target, dealing (0.5/mag/mag) and causing them to deal 10% less damage for 1 turn."
+passive = [  ]
+sequence = [ SubResource( 1 ), SubResource( 16 ) ]
+pip_cost = 0
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+type = 1
+conditions = [  ]
+target_type = 0
+friendly = true
+scale_type = 2
+scale_amount = 0.8
+scale_change = 1.0
+apply = [  ]
+damage_type = 0
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 8 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+name = ""
+description = "Play a healing melody for an ally, healing them for (0.8/mag/heal)."
+passive = [  ]
+sequence = [ SubResource( 5 ) ]
+pip_cost = 1
+req_position = [ 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 0
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+type = 3
+friendly = false
+turns = 1
+scale_type = 0
+scale_amount = 0.0
+damage_type = 0
+flat_value = 0.0
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+type = 0
+conditions = [  ]
+target_type = 0
+friendly = false
+scale_type = 2
+scale_amount = 0.6
+scale_change = 1.0
+apply = [ SubResource( 6 ) ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 8 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+name = ""
+description = "Play a striking melody for a single target, dealing (0.6/mag/mag) and Stunning them."
+passive = [  ]
+sequence = [ SubResource( 7 ) ]
+pip_cost = 2
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 2 )
+type = 1
+conditions = [  ]
+target_type = 2
+friendly = true
+scale_type = 2
+scale_amount = 0.6
+scale_change = 1.0
+apply = [  ]
+damage_type = 0
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 8 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+name = ""
+description = "Play a healing melody for all allies, healing for (0.6/mag/heal)."
+passive = [  ]
+sequence = [ SubResource( 9 ) ]
+pip_cost = 3
+req_position = [ 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 0
+
+[resource]
+script = ExtResource( 3 )
+id = "bard_snake"
+sprite = ExtResource( 1 )
+icon = ExtResource( 7 )
+element_type = 1
+ability_set = [ SubResource( 11 ), SubResource( 2 ), SubResource( 4 ), SubResource( 8 ), SubResource( 10 ) ]
+base_hp = 10.0
+base_atk = 5.0
+base_mag = 5.0
+base_a_def = 0.05
+base_m_def = 0.05
+base_res = 0.05
+base_acc = 0.9
+base_dodge = 0.05
+base_crit_rate = 0.05
+base_crit_x = 0.5
+base_spd = 5.0
+hp_growth = 0.0
+atk_growth = 0.0
+mag_growth = 0.0
+a_def_growth = 0.0
+m_def_growth = 0.0
+res_growth = 0.0
+acc_growth = 0.0
+dodge_growth = 0.0
+crit_rate_growth = 0.0
+crit_x_growth = 0.0
+spd_growth = 0.0

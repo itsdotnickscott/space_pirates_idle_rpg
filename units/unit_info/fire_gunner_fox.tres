@@ -1,0 +1,203 @@
+[gd_resource type="Resource" load_steps=20 format=2]
+
+[ext_resource path="res://assets/heroes/sprite_frames/fire_gunner_fox.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://units/unit_info.gd" type="Script" id=2]
+[ext_resource path="res://units/action.gd" type="Script" id=3]
+[ext_resource path="res://units/ability.gd" type="Script" id=4]
+[ext_resource path="res://units/passive.gd" type="Script" id=5]
+[ext_resource path="res://assets/heroes/icons/fire_cat.png" type="Texture" id=6]
+[ext_resource path="res://assets/heroes/animations/attack.tres" type="Animation" id=7]
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+signal_required = true
+signal_name = "dealt_dmg"
+call_fn_name = "_on_fire_gunner_fox_deal_dmg"
+attach_to = 1
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 4 )
+name = ""
+description = "Passive: Damaging a unit applies a Burn that deals (0.75/mag/true) over 3 turns."
+passive = [ SubResource( 11 ) ]
+sequence = [  ]
+pip_cost = 0
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 0
+friendly = false
+scale_type = 1
+scale_amount = 0.9
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+name = ""
+description = "Shoot a target to deal (0.9/atk/atk)."
+passive = [  ]
+sequence = [ SubResource( 1 ) ]
+pip_cost = 0
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 3
+friendly = false
+scale_type = 1
+scale_amount = 0.4
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 2
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 4 )
+name = ""
+description = "Shoot 3 times at random targets, each dealing (0.4/atk/atk)."
+passive = [  ]
+sequence = [ SubResource( 4 ) ]
+pip_cost = 1
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 0
+friendly = false
+scale_type = 1
+scale_amount = 0.9
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 4
+friendly = false
+scale_type = 2
+scale_amount = 0.5
+scale_change = 1.0
+apply = [  ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 4 )
+name = ""
+description = "Shoot a target to deal (0.9/atk/atk). Then, shoot again to cause an explosion that deals (0.5/mag/mag) to the target and nearby units."
+passive = [  ]
+sequence = [ SubResource( 9 ), SubResource( 10 ) ]
+pip_cost = 2
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 2
+friendly = false
+scale_type = 1
+scale_amount = 0.5
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 3 )
+type = 5
+conditions = [  ]
+target_type = 2
+friendly = false
+scale_type = 2
+scale_amount = 0.25
+scale_change = 1.0
+apply = [  ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 7 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+name = ""
+description = "Shoot all targets for (0.5/atk/atk). Then, consume every Burn, dealing its damage instantly plus (0.25/mag/mag)."
+passive = [  ]
+sequence = [ SubResource( 13 ), SubResource( 14 ) ]
+pip_cost = 3
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[resource]
+script = ExtResource( 2 )
+id = "fire_gunner_fox"
+sprite = ExtResource( 1 )
+icon = ExtResource( 6 )
+element_type = 0
+ability_set = [ SubResource( 12 ), SubResource( 2 ), SubResource( 3 ), SubResource( 5 ), SubResource( 6 ) ]
+base_hp = 10.0
+base_atk = 5.0
+base_mag = 5.0
+base_a_def = 0.05
+base_m_def = 0.05
+base_res = 0.05
+base_acc = 0.9
+base_dodge = 0.05
+base_crit_rate = 0.05
+base_crit_x = 0.5
+base_spd = 5.0
+hp_growth = 0.0
+atk_growth = 0.0
+mag_growth = 0.0
+a_def_growth = 0.0
+m_def_growth = 0.0
+res_growth = 0.0
+acc_growth = 0.0
+dodge_growth = 0.0
+crit_rate_growth = 0.0
+crit_x_growth = 0.0
+spd_growth = 0.0

@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/m3x6.tres" type="DynamicFont" id=1]
+[ext_resource path="res://battle/battle_ui.gd" type="Script" id=2]
+[ext_resource path="res://assets/battle/gray_health_bar.png" type="Texture" id=3]
+[ext_resource path="res://assets/battle/empty_pip.png" type="Texture" id=4]
+[ext_resource path="res://assets/battle/green_health_bar.png" type="Texture" id=5]
+[ext_resource path="res://assets/heroes/icons/boots_icon.png" type="Texture" id=6]
+
+[node name="BattleUI" type="Node2D"]
+z_index = 2
+script = ExtResource( 2 )
+
+[node name="AbilityControls" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Passive" type="Button" parent="AbilityControls"]
+margin_left = 313.0
+margin_top = 310.0
+margin_right = 353.0
+margin_bottom = 335.0
+custom_fonts/font = ExtResource( 1 )
+text = "PASSIVE"
+
+[node name="AbilityAttack" type="Button" parent="AbilityControls"]
+margin_left = 313.0
+margin_top = 249.0
+margin_right = 363.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 1 )
+text = "Attack"
+
+[node name="AbilityPrimary" type="Button" parent="AbilityControls"]
+margin_left = 383.0
+margin_top = 249.0
+margin_right = 433.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 1 )
+text = "Primary"
+
+[node name="AbilitySecondary" type="Button" parent="AbilityControls"]
+margin_left = 453.0
+margin_top = 249.0
+margin_right = 503.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 1 )
+text = "Secondary"
+
+[node name="AbilityUltimate" type="Button" parent="AbilityControls"]
+margin_left = 523.0
+margin_top = 249.0
+margin_right = 573.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 1 )
+text = "Ultimate"
+
+[node name="MoveLeft" type="Button" parent="AbilityControls"]
+margin_left = 514.0
+margin_top = 310.0
+margin_right = 539.0
+margin_bottom = 335.0
+custom_fonts/font = ExtResource( 1 )
+text = "<"
+
+[node name="MoveRight" type="Button" parent="AbilityControls"]
+margin_left = 547.0
+margin_top = 310.0
+margin_right = 572.0
+margin_bottom = 335.0
+custom_fonts/font = ExtResource( 1 )
+text = ">"
+
+[node name="TurnTrack" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TurnOrderBackground" type="VBoxContainer" parent="TurnTrack"]
+margin_left = 13.0
+margin_top = 7.0
+margin_right = 43.0
+margin_bottom = 263.0
+alignment = 2
+
+[node name="TurnOrder" type="VBoxContainer" parent="TurnTrack"]
+margin_left = 13.0
+margin_top = 7.0
+margin_right = 43.0
+margin_bottom = 263.0
+alignment = 2
+
+[node name="NextLabel" type="Label" parent="TurnTrack"]
+visible = false
+margin_left = 45.0
+margin_top = 248.0
+margin_right = 61.0
+margin_bottom = 262.0
+rect_rotation = -90.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "NEXT"
+align = 1
+
+[node name="CurrUnitInfo" type="Control" parent="."]
+margin_left = 7.0
+margin_top = 264.0
+margin_right = 279.0
+margin_bottom = 352.0
+
+[node name="CurrIconBackground" type="TextureRect" parent="CurrUnitInfo"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 35.0
+margin_bottom = 36.0
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 6 )
+
+[node name="CurrIcon" type="TextureRect" parent="CurrUnitInfo"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 35.0
+margin_bottom = 36.0
+rect_scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 6 )
+
+[node name="CurrName" type="Label" parent="CurrUnitInfo"]
+margin_left = 90.0
+margin_top = 2.0
+margin_right = 130.0
+margin_bottom = 16.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Boots"
+
+[node name="CurrPipBar" type="HBoxContainer" parent="CurrUnitInfo"]
+margin_left = 87.0
+margin_top = 25.0
+margin_right = 111.0
+margin_bottom = 33.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Pip1" type="Sprite" parent="CurrUnitInfo/CurrPipBar"]
+position = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+
+[node name="Pip2" type="Sprite" parent="CurrUnitInfo/CurrPipBar"]
+position = Vector2( 12, 4 )
+texture = ExtResource( 4 )
+
+[node name="Pip3" type="Sprite" parent="CurrUnitInfo/CurrPipBar"]
+position = Vector2( 20, 4 )
+texture = ExtResource( 4 )
+
+[node name="HPLabel" type="Label" parent="CurrUnitInfo"]
+margin_left = 174.0
+margin_top = 30.0
+margin_right = 182.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+text = "HP"
+
+[node name="CurrHPLabel" type="Label" parent="CurrUnitInfo"]
+margin_left = 185.0
+margin_top = 23.0
+margin_right = 222.0
+margin_bottom = 37.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "9999/9999"
+
+[node name="CurrHPBar" type="TextureProgress" parent="CurrUnitInfo"]
+margin_left = 88.0
+margin_top = 43.0
+margin_right = 138.0
+margin_bottom = 49.0
+rect_scale = Vector2( 3, 3 )
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 5 )
+
+[node name="CurrStatusGrid" type="GridContainer" parent="CurrUnitInfo"]
+margin_left = 92.0
+margin_top = 67.0
+margin_right = 187.0
+margin_bottom = 80.0
+grow_vertical = 0
+rect_scale = Vector2( 1.5, 1.5 )
+columns = 8
+
+[connection signal="mouse_entered" from="AbilityControls/Passive" to="." method="_on_Ability_mouse_entered" binds= [ 0 ]]
+[connection signal="mouse_exited" from="AbilityControls/Passive" to="." method="_on_Ability_mouse_exited"]
+[connection signal="mouse_entered" from="AbilityControls/AbilityAttack" to="." method="_on_Ability_mouse_entered" binds= [ 1 ]]
+[connection signal="mouse_exited" from="AbilityControls/AbilityAttack" to="." method="_on_Ability_mouse_exited"]
+[connection signal="pressed" from="AbilityControls/AbilityAttack" to="." method="_on_Ability_pressed" binds= [ 1 ]]
+[connection signal="mouse_entered" from="AbilityControls/AbilityPrimary" to="." method="_on_Ability_mouse_entered" binds= [ 2 ]]
+[connection signal="mouse_exited" from="AbilityControls/AbilityPrimary" to="." method="_on_Ability_mouse_exited"]
+[connection signal="pressed" from="AbilityControls/AbilityPrimary" to="." method="_on_Ability_pressed" binds= [ 2 ]]
+[connection signal="mouse_entered" from="AbilityControls/AbilitySecondary" to="." method="_on_Ability_mouse_entered" binds= [ 3 ]]
+[connection signal="mouse_exited" from="AbilityControls/AbilitySecondary" to="." method="_on_Ability_mouse_exited"]
+[connection signal="pressed" from="AbilityControls/AbilitySecondary" to="." method="_on_Ability_pressed" binds= [ 3 ]]
+[connection signal="mouse_entered" from="AbilityControls/AbilityUltimate" to="." method="_on_Ability_mouse_entered" binds= [ 4 ]]
+[connection signal="mouse_exited" from="AbilityControls/AbilityUltimate" to="." method="_on_Ability_mouse_exited"]
+[connection signal="pressed" from="AbilityControls/AbilityUltimate" to="." method="_on_Ability_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="AbilityControls/MoveLeft" to="." method="_on_Ability_pressed" binds= [ 5 ]]
+[connection signal="pressed" from="AbilityControls/MoveRight" to="." method="_on_Ability_pressed" binds= [ 6 ]]

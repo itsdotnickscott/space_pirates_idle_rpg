@@ -1,0 +1,168 @@
+[gd_resource type="Resource" load_steps=18 format=2]
+
+[ext_resource path="res://units/ability.gd" type="Script" id=1]
+[ext_resource path="res://units/unit_info.gd" type="Script" id=2]
+[ext_resource path="res://units/action.gd" type="Script" id=3]
+[ext_resource path="res://assets/heroes/icons/cow_dog.png" type="Texture" id=4]
+[ext_resource path="res://assets/heroes/animations/attack.tres" type="Animation" id=5]
+[ext_resource path="res://assets/heroes/sprite_frames/cow_dog.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://units/status_effect.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+name = ""
+description = ""
+passive = [  ]
+sequence = [  ]
+pip_cost = 0
+req_position = [  ]
+target_positions = [  ]
+target_team = 0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 0
+scale_type = 1
+scale_amount = 1.0
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 0
+move_targ = 0
+move_self = 0
+animation = ExtResource( 5 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+name = ""
+description = "Shoot a target to deal (1.0/atk/atk)."
+passive = [  ]
+sequence = [ SubResource( 2 ) ]
+pip_cost = 0
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 7 )
+type = 3
+friendly = false
+turns = 1
+scale_type = 0
+scale_amount = 0.0
+damage_type = 0
+flat_value = 0.0
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 0
+scale_type = 2
+scale_amount = 0.8
+scale_change = 1.0
+apply = [ SubResource( 7 ) ]
+damage_type = 2
+repeat = 0
+move_targ = 0
+move_self = -1
+animation = ExtResource( 5 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+name = ""
+description = "Roll forward and throw a flash bang that deals (0.8/mag/mag) and Stuns the target."
+passive = [  ]
+sequence = [ SubResource( 8 ) ]
+pip_cost = 2
+req_position = [ 2, 3 ]
+target_positions = [ 0, 1, 2 ]
+target_team = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 2
+scale_type = 1
+scale_amount = 1.25
+scale_change = 0.5
+apply = [  ]
+damage_type = 1
+repeat = 0
+move_targ = 0
+move_self = 1
+animation = ExtResource( 5 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+name = ""
+description = "Shoot a blast knocking CowDog backwards, dealing (1.25/atk/atk) to the first target and dealing 50% less damage for each other target."
+passive = [  ]
+sequence = [ SubResource( 9 ) ]
+pip_cost = 2
+req_position = [ 0, 1 ]
+target_positions = [ 0, 1, 2 ]
+target_team = 1
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+type = 0
+conditions = [  ]
+target_type = 3
+scale_type = 1
+scale_amount = 0.5
+scale_change = 1.0
+apply = [  ]
+damage_type = 1
+repeat = 5
+move_targ = 0
+move_self = 0
+animation = ExtResource( 5 )
+animation_name = "attack"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+name = ""
+description = "Unloads gun, shooting 6 times at random targets, each bullet dealing (0.5/atk/atk)."
+passive = [  ]
+sequence = [ SubResource( 10 ) ]
+pip_cost = 2
+req_position = [ 0, 1, 2, 3 ]
+target_positions = [ 0, 1, 2, 3 ]
+target_team = 1
+
+[resource]
+script = ExtResource( 2 )
+id = "cow_dog"
+sprite = ExtResource( 6 )
+icon = ExtResource( 4 )
+element_type = 0
+ability_set = [ SubResource( 1 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ]
+base_hp = 10.0
+base_atk = 5.0
+base_mag = 5.0
+base_a_def = 0.05
+base_m_def = 0.05
+base_res = 0.05
+base_acc = 0.9
+base_dodge = 0.05
+base_crit_rate = 0.05
+base_crit_x = 0.5
+base_spd = 5.0
+hp_growth = 0.0
+atk_growth = 0.0
+mag_growth = 0.0
+a_def_growth = 0.0
+m_def_growth = 0.0
+res_growth = 0.0
+acc_growth = 0.0
+dodge_growth = 0.0
+crit_rate_growth = 0.0
+crit_x_growth = 0.0
+spd_growth = 0.0

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://units/Unit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://battle/BattleUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://battle/battle.gd" type="Script" id=3]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AllyUnit1" parent="." groups=["ally"] instance=ExtResource( 1 )]
+position = Vector2( 307, 146 )
+
+[node name="AllyUnit2" parent="." groups=["ally"] instance=ExtResource( 1 )]
+position = Vector2( 242, 146 )
+
+[node name="AllyUnit3" parent="." groups=["ally"] instance=ExtResource( 1 )]
+position = Vector2( 177, 146 )
+
+[node name="AllyUnit4" parent="." groups=["ally"] instance=ExtResource( 1 )]
+position = Vector2( 112, 146 )
+
+[node name="BattleUI" parent="." instance=ExtResource( 2 )]

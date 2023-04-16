@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/m3x6.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/battle/empty_pip.png" type="Texture" id=2]
+[ext_resource path="res://assets/battle/gray_health_bar.png" type="Texture" id=3]
+[ext_resource path="res://assets/battle/green_health_bar.png" type="Texture" id=4]
+[ext_resource path="res://assets/battle/turn_indicator.png" type="Texture" id=5]
+
+[node name="UnitBattleInfo" type="Node2D"]
+
+[node name="PipBar" type="HBoxContainer" parent="."]
+margin_left = -12.0
+margin_top = -4.0
+margin_right = 12.0
+margin_bottom = 4.0
+
+[node name="Pip1" type="Sprite" parent="PipBar"]
+position = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="Pip2" type="Sprite" parent="PipBar"]
+position = Vector2( 12, 4 )
+texture = ExtResource( 2 )
+
+[node name="Pip3" type="Sprite" parent="PipBar"]
+position = Vector2( 20, 4 )
+texture = ExtResource( 2 )
+
+[node name="HPBar" type="TextureProgress" parent="."]
+margin_left = -25.0
+margin_top = -12.0
+margin_right = 25.0
+margin_bottom = -6.0
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+
+[node name="HPLabel" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -23.0
+margin_right = 20.0
+margin_bottom = -9.0
+custom_fonts/font = ExtResource( 1 )
+text = "9999HP"
+align = 1
+
+[node name="TurnIndicator" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 144 )
+texture = ExtResource( 5 )
+
+[node name="StatusGrid" type="GridContainer" parent="."]
+margin_left = -22.0
+margin_top = -34.0
+margin_right = 22.0
+margin_bottom = -24.0
+grow_vertical = 0
+columns = 4
